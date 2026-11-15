@@ -60,7 +60,7 @@ public class FilaPosicionFutbol {
         return golesFavor - golesContra;
     }
 
-    /** 3 puntos por victoria, 1 por empate (supuesto a confirmar con el equipo). */
+    // 3 puntos por ganar y 1 por empate
     public int getPuntos() {
         return ganados * 3 + empatados;
     }

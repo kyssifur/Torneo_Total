@@ -4,7 +4,7 @@ package model;
 import java.util.ArrayList;
 
 /**
- * Equipo con su plantel de jugadores. CLASE COMPARTIDA: coordinar cambios con el equipo.
+ *Equipo con su plantel de jugadores.
  */
 public class Equipo {
 
@@ -55,8 +55,7 @@ public class Equipo {
     public void setNivelFuerza(int nivelFuerza) {
         this.nivelFuerza = nivelFuerza;
     }
-
-    /** Devuelve una copia para proteger la lista interna (encapsulamiento). */
+    
     public ArrayList<Jugador> getJugadores() {
         return new ArrayList<>(jugadores);
     }
@@ -70,7 +69,6 @@ public class Equipo {
         return null;
     }
 
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Equipo)) return false;
@@ -78,12 +76,10 @@ public class Equipo {
         return nombre.equalsIgnoreCase(otro.nombre);
     }
 
-    @Override
     public int hashCode() {
         return nombre.toLowerCase().hashCode();
     }
 
-    @Override
     public String toString() {
         return nombre;
     }
