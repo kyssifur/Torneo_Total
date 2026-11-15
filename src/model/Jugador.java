@@ -1,9 +1,5 @@
 package model;
 
-
-/**
- * Jugador generico. CLASE COMPARTIDA: coordinar cambios con el equipo.
- */
 public class Jugador {
 
     private String id;

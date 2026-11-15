@@ -35,7 +35,7 @@ public class TorneoFutbol {
         equipos.add(equipo);
     }
 
-    /** Genera todos los partidos: cada equipo juega una vez contra los demas. */
+    //Genera los partidos
     public void crearLlaves() {
         if (equipos.size() < 2) {
             throw new IllegalStateException("Se necesitan al menos 2 equipos");
@@ -51,7 +51,7 @@ public class TorneoFutbol {
         fixtureGenerado = true;
     }
 
-    /** Registra el resultado del partido en la posicion indicada del fixture. */
+    //Registra el partido
     public void registrarResultado(int indicePartido, int golesA, int golesB) {
         if (indicePartido < 0 || indicePartido >= partidos.size()) {
             throw new IllegalArgumentException("No existe el partido " + indicePartido);
@@ -66,7 +66,7 @@ public class TorneoFutbol {
         partido.registrarMarcador(golesA, golesB);
     }
 
-    /** Calcula la tabla ordenada: puntos, diferencia de goles, goles a favor. */
+    //Calcula la tabla
     public ArrayList<FilaPosicionFutbol> calcularTabla() {
         HashMap<Equipo, FilaPosicionFutbol> filas = new HashMap<>();
         for (Equipo e : equipos) {

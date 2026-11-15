@@ -11,12 +11,11 @@ import model.PartidoFutbol;
 import model.TorneoFutbol;
 
 /**
- * Prueba por consola del modulo de futbol. TEMPORAL: cuando exista la GUI,
- * esta clase se reemplaza por el Main real de la aplicacion.
+ *Prueba por consola del modulo de futbol
  */
 public class MainFutbol {
 
-    // Posicion de cada camiseta (1 a 11): 1 portero, 4 defensas, 3 medios, 3 delanteros
+    //Posicion(11): 1 portero, 4 defensas, 3 medios, 3 delanteros
     private static final String[] POSICIONES = {
         "Portero", "Defensa", "Defensa", "Defensa", "Defensa",
         "Mediocampista", "Mediocampista", "Mediocampista",
@@ -24,7 +23,7 @@ public class MainFutbol {
     };
 
     public static void main(String[] args) {
-        // 1. Equipos con 11 jugadores cada uno
+        //Equipos con 11 jugadores cada uno
         Equipo sistemas = crearEquipo("Ing. Sistemas", "SIS", new String[] {
             "Francisco Mamani", "Rony Mamani", "Carlos Huaman", "Jorge Condori", "Andres Flores",
             "Miguel Ccori", "Renzo Apaza", "Sergio Choque", "Marco Vilca", "Pablo Chambi", "Daniel Ramos"
@@ -38,7 +37,7 @@ public class MainFutbol {
             "Adrian Cueva", "Kevin Mendoza", "Aldo Bejar", "Franco Linares", "Piero Arce", "Luciano Neyra"
         });
 
-        // 2. Torneo
+        //Torneo
         TorneoFutbol torneo = new TorneoFutbol("Copa Interfacultades");
         torneo.registrarEquipoExistente(sistemas);
         torneo.registrarEquipoExistente(mecanica);
@@ -51,7 +50,7 @@ public class MainFutbol {
             System.out.println(i + ") " + partidos.get(i));
         }
 
-        // 3. Resultados y eventos
+        //Resultados y eventos
         JugadorFutbol delanteroSis = (JugadorFutbol) sistemas.getJugadores().get(9);   // #10
         JugadorFutbol delanteroMec = (JugadorFutbol) mecanica.getJugadores().get(9);   // #10
         JugadorFutbol porteroSis = (JugadorFutbol) sistemas.getJugadores().get(0);     // #1
@@ -65,7 +64,7 @@ public class MainFutbol {
         torneo.registrarResultado(1, 1, 1); // Sistemas 1-1 Derecho
         torneo.registrarResultado(2, 0, 3); // Mecanica 0-3 Derecho
 
-        // 4. Tabla de posiciones
+        //Tabla de posiciones
         System.out.println();
         System.out.println("===|| TABLA DE POSICIONES ||===");
         System.out.printf("%-14s %3s %3s %3s %3s %3s %3s %4s %4s%n",
@@ -77,7 +76,7 @@ public class MainFutbol {
                     f.getDiferenciaGoles(), f.getPuntos());
         }
 
-        // 5. Plantel y estadisticas
+        //Plantel y estadisticas
         System.out.println();
         System.out.println("===|| PLANTEL DE " + sistemas.getNombre().toUpperCase() + " ||===");
         for (Jugador j : sistemas.getJugadores()) {
@@ -95,7 +94,7 @@ public class MainFutbol {
             }
         }
 
-        // 6. Pruebas de validacion
+        //Pruebas de validacion
         System.out.println();
         System.out.println("===|| PRUEBAS DE ERRORES ||===");
         probar("Goles negativos", () -> torneo.registrarResultado(0, -1, 2));
@@ -110,7 +109,7 @@ public class MainFutbol {
                 () -> torneo.registrarEquipoExistente(new Equipo("Medicina")));
     }
 
-    /** Crea un equipo de 11 jugadores titulares con camisetas del 1 al 11. */
+    //Creación de equipos
     private static Equipo crearEquipo(String nombre, String prefijoId, String[] jugadores) {
         Equipo equipo = new Equipo(nombre);
         for (int i = 0; i < jugadores.length; i++) {

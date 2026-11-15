@@ -2,9 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-/**
- * Partido de futbol. Reemplaza al PartidoVoley mal nombrado del diagrama.
- */
 public class PartidoFutbol extends Partido {
 
     private int golesA;
