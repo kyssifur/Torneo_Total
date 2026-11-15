@@ -78,7 +78,7 @@ TorneoTotal/
    cd TorneoTotal
    ```
 2. Crear la base de datos ejecutando el script en MySQL.
-3. Configurar la conexión (usuario, contraseña y nombre de la base de datos) en [archivo de configuración, completar].
+3. Configurar la conexión (usuario, contraseña y nombre de la base de datos).
    No subir credenciales reales al repositorio.
 4. Abrir el proyecto en el IDE y agregar a las librerías los `.jar` de la carpeta `lib/`.
 5. Ejecutar la clase principal .
