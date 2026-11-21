@@ -1,6 +1,7 @@
 package view.voley;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import controller.VoleyController;
 
 public class VentanaVoley extends JFrame {
@@ -56,6 +57,36 @@ public class VentanaVoley extends JFrame {
 
         add(panelSuperior, BorderLayout.NORTH);
         add(areaSalida, BorderLayout.CENTER);
+
+        Listener oyente = new Listener();
+        btnRegistrar.addActionListener(oyente);
+        btnVerEquipos.addActionListener(oyente);
+        btnCrearLlaves.addActionListener(oyente);
+    }
+
+    private class Listener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == btnRegistrar) {
+                String resultado = controller.registrarEquipo(
+                    txtNombre.getText(),
+                    txtRanking.getText(),
+                    txtFuerza.getText()
+                );
+                if (resultado.equals("OK")) {
+                    txtNombre.setText("");
+                    txtRanking.setText("");
+                    txtFuerza.setText("");
+                    JOptionPane.showMessageDialog(null, "Equipo registrado con éxito.");
+                    areaSalida.setText(controller.verEquipos());
+                } else {
+                    JOptionPane.showMessageDialog(null, resultado);
+                }
+            } else if (e.getSource() == btnVerEquipos) {
+                areaSalida.setText(controller.verEquipos());
+            } else if (e.getSource() == btnCrearLlaves) {
+                areaSalida.setText(controller.crearLlaves());
+            }
+        }
     }
 
     public static void main(String[] args) {
