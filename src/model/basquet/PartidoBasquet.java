@@ -1,5 +1,6 @@
 package model.basquet;
-import model.*;
+
+import model.Equipo;
 
 public class PartidoBasquet {
     private Equipo equipoA;
@@ -11,6 +12,8 @@ public class PartidoBasquet {
     public PartidoBasquet(Equipo equipoA, Equipo equipoB) {
         this.equipoA = equipoA;
         this.equipoB = equipoB;
+        this.puntosA = 0;
+        this.puntosB = 0;
     }
 
     public void registrarMarcador(int puntosA, int puntosB) {
@@ -21,12 +24,18 @@ public class PartidoBasquet {
         } else if (puntosB > puntosA) {
             this.ganador = equipoB;
         } else {
-            this.ganador = null; // Empate
+            this.ganador = null;
         }
     }
 
     public String getResumen() {
-        String nombreGanador = (ganador != null) ? ganador.getNombre() : "Empate";
-        return equipoA.getNombre() + " (PUNTOS: " + puntosA + " ) vs " + equipoB.getNombre() + " (PUNTOS: " + puntosB + " ) \nGANADOR: " + nombreGanador;
+        String nombreGanador = (ganador != null) ? ganador.getNombre() : "Empate / En juego";
+        return equipoA.getNombre() + " (" + puntosA + ") vs " + equipoB.getNombre() + " (" + puntosB + ") \nGanador: " + nombreGanador;
     }
+
+    public Equipo getEquipoA() { return equipoA; }
+    public Equipo getEquipoB() { return equipoB; }
+    public int getPuntosA() { return puntosA; }
+    public int getPuntosB() { return puntosB; }
+    public Equipo getGanador() { return ganador; }
 }

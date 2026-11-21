@@ -1,6 +1,8 @@
 package model.basquet;
+
 import model.*;
 import java.util.*;
+
 public class TorneoBasquet extends TorneosEquipos {
     private String nombre;
     private ArrayList<Equipo> equipos;
@@ -19,10 +21,12 @@ public class TorneoBasquet extends TorneosEquipos {
         this.equipos.add(equipo);
     }
 
-    public void formarEquipo(ArrayList<Jugador> bolsaJugadores, String nombreEquipo) {
-        Equipo nuevo = new Equipo(nombreEquipo, 1, 50);
-        if (!bolsaJugadores.isEmpty()) {
+    public void formarEquipoDesdeBolsa(ArrayList<Jugador> bolsaJugadores, String nombreEquipo) {
+        Equipo nuevo = new Equipo(nombreEquipo, equipos.size() + 1, 60);
+        int jugadoresAsignados = 0;
+        while (!bolsaJugadores.isEmpty() && jugadoresAsignados < 3) {
             nuevo.addJugador(bolsaJugadores.remove(0));
+            jugadoresAsignados++;
         }
         this.equipos.add(nuevo);
     }
@@ -31,24 +35,42 @@ public class TorneoBasquet extends TorneosEquipos {
         System.out.println("Grupo creado para torneo de básquet.");
     }
 
-    public void crearLlaves() {
+    public String crearLlaves() {
         this.llaves.clear();
         if (equipos.size() < 2) {
-            System.out.println("Se necesitan al menos 2 equipos.");
-            return;
+            return "⚠ Se necesitan al menos 2 equipos inscritos para generar los enfrentamientos.\n";
         }
+        
         ArrayList<Equipo> mezcla = new ArrayList<>(equipos);
         Collections.shuffle(mezcla);
 
-        System.out.println("\n--- LLAVES DE BASQUET GENERADAS ---");
-        for (int i = 0; i < mezcla.size() - 1; i += 2) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n--- ENFRENTAMIENTOS GENERADOS ---\n");
+        
+        int totalEquipos = mezcla.size();
+        int limite = totalEquipos - (totalEquipos % 2);
+
+        for (int i = 0; i < limite; i += 2) {
             PartidoBasquet partido = new PartidoBasquet(mezcla.get(i), mezcla.get(i + 1));
             this.llaves.add(partido);
-            System.out.println(mezcla.get(i).getNombre() + " vs " + mezcla.get(i + 1).getNombre());
+            sb.append("🏀 ").append(mezcla.get(i).getNombre())
+              .append(" vs ").append(mezcla.get(i + 1).getNombre()).append("\n");
         }
+        
+        if (totalEquipos % 2 != 0) {
+            Equipo equipoLibre = mezcla.get(totalEquipos - 1);
+            sb.append("¡¡FELICIDADES!! Equipo ").append(equipoLibre.getNombre())
+              .append(" pasa DIRECTO a la siguiente ronda por cantidad impar de equipos.\n");
+        }
+        
+        return sb.toString();
     }
 
     public ArrayList<Equipo> getEquipos() {
         return this.equipos;
+    }
+
+    public ArrayList<PartidoBasquet> getLlaves() {
+        return this.llaves;
     }
 }
