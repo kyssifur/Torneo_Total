@@ -1,8 +1,9 @@
 package model;
 
 /**
- * Clase abstracta base para todos los partidos (futbol, basquet, voley).
- * Permite polimorfismo es decir un torneo puede tratar cualquier partido como Partido.
+ * Clase abstracta base para los partidos de deportes por equipos.
+ * PROPUESTA: CLASE COMPARTIDA, acordar con el equipo antes de que otros la usen.
+ * Permite polimorfismo: un torneo puede tratar cualquier partido como Partido.
  */
 public abstract class Partido {
 
@@ -14,7 +15,7 @@ public abstract class Partido {
         if (equipoA == null || equipoB == null) {
             throw new IllegalArgumentException("Un partido necesita dos equipos");
         }
-        if (equipoA.equals(equipoB)) {
+        if (equipoA == equipoB) {
             throw new IllegalArgumentException("Un equipo no puede jugar contra si mismo");
         }
         this.equipoA = equipoA;
@@ -38,10 +39,9 @@ public abstract class Partido {
         this.jugado = true;
     }
 
-    //cada deporte define como registrar el marcador
+    /** Cada deporte define como se registra su marcador. */
     public abstract void registrarMarcador(int puntosA, int puntosB);
 
-    //Devuelve al ganadro o null si no se dio o termino en empate.
+    /** Devuelve el ganador, o null si el partido no se jugo o termino empatado. */
     public abstract Equipo getGanador();
 }
-
