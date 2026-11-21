@@ -1,5 +1,5 @@
 package view.tenisdemesa;
 
-public class Panel {
+public class PanelTenisDeMesa {
     
 }
