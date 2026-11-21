@@ -39,7 +39,7 @@ public class TorneoVoley {
 
     public String obtenerEquiposTexto() {
         if (equipos.size() == 0) {
-            return "No hay equipos registrados.";
+            return "No hay equipos registrados";
         }
         String texto = "Equipos Inscritos \n";
         for (int i = 0; i < equipos.size(); i++) {
@@ -50,11 +50,15 @@ public class TorneoVoley {
     }
 
     public String crearLlavesAleatoriasTexto() {
+        if (equipos.size() < 2) {
+            return "Se necesitan al menos 2 equipos para crear llaves";
+        }
         String texto = "Llaves Generadas \n";
         ArrayList<Equipo> copia = new ArrayList<Equipo>();
         for (int i = 0; i < equipos.size(); i++) {
             copia.add(equipos.get(i));
         }
+        this.llaves.clear();
 
         while (copia.size() >= 2) {
             int idxA = (int) (Math.random() * copia.size());
