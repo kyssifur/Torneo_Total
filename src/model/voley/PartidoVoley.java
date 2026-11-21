@@ -1,5 +1,5 @@
 package model.voley;
-import model.*;
+import model.Equipo;
 
 public class PartidoVoley {
     private Equipo equipoA;
