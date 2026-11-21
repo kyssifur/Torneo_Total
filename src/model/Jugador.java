@@ -1,15 +1,12 @@
 package model;
-
-/**
- * Jugador generico, compartido por todos los deportes.
- * Constructor: (nombre, id, posicion, numeroCamiseta), el mismo orden que ya usaba el equipo.
- */
 public class Jugador {
 
     private final String nombre;
-    private final String id;
-    private final String posicion;
-    private final int numeroCamiseta;
+    private String id;
+    private String posicion;
+    private int numeroCamiseta;
+    private int ranking;
+    private int fuerza;
 
     public Jugador(String nombre, String id, String posicion, int numeroCamiseta) {
         if (nombre == null || nombre.isBlank()) {
@@ -25,6 +22,20 @@ public class Jugador {
         this.id = id;
         this.posicion = posicion;
         this.numeroCamiseta = numeroCamiseta;
+        this.ranking = 0;
+        this.fuerza = 0;
+    }
+
+    public Jugador(String nombre, int ranking, int fuerza) {
+        if (nombre == null || nombre.isBlank()) {
+            throw new IllegalArgumentException("El nombre del jugador es obligatorio");
+        }
+        this.nombre = nombre;
+        this.id = "AUTO-" + System.currentTimeMillis();
+        this.posicion = "General";
+        this.numeroCamiseta = 0;
+        this.ranking = ranking;
+        this.fuerza = fuerza;
     }
 
     public String getNombre() {
@@ -43,7 +54,14 @@ public class Jugador {
         return numeroCamiseta;
     }
 
-    @Override
+    public int getRanking() {
+        return ranking;
+    }
+
+    public int getFuerza() {
+        return fuerza;
+    }
+
     public String toString() {
         return nombre + " (#" + numeroCamiseta + ", " + posicion + ")";
     }
